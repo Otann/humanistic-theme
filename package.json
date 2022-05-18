@@ -17,5 +17,15 @@
         "path": "./themes/Humanistic Theme-color-theme.json"
       }
     ]
-  }
+  },
+  "devDependencies": {
+    "mustache": "^4.2.0",
+    "watch": "^1.0.2"
+  },
+  "scripts": {
+    "generate": "node ./src/generate.js",
+    "local": "node ./src/local.js",
+    "watch": "watch 'npm run local' ./src"
+  },
+  "type": "module"
 }
