@@ -1,0 +1,109 @@
+border {
+  color: #d4d4d4;
+}
+accent {
+  color: #3982cc;
+}
+info {
+  color: #3982cc;
+  background-color: #bcdaf7;
+}
+success {
+  color: #067d17;
+  background-color: #edfced;
+}
+warning {
+  color: #ebc700;
+  background-color: #f5eac1;
+}
+danger {
+  color: #f50000;
+  background-color: #ffcccc;
+}
+hint {
+  color: #c3c3c3;
+  background-color: #f7faff;
+}
+
+base {
+  background-color: #ffffff;
+  color: #000000;
+
+  .current-line {
+    background-color: #fcfaee;
+  }
+
+  .selection {
+    background-color: #b5d7fd;
+  }
+
+  .whitespace {
+    color: #e6e6e6;
+  }
+
+  .highlight {
+    .text {
+      background-color: #b5d7fd88;
+    }
+    .symbol-read {
+      background-color: #edebfc;
+    }
+    .symbol-write {
+      background-color: #fce8f4;
+    }
+    .search-current {
+      background-color: #ccccff;
+    }
+    .search-others {
+      background-color: #ffe959;
+    }
+  }
+
+  .guides {
+    .active {
+      color: #d8d8d8;
+    }
+    .inactive {
+      color: #e6e6e6;
+    }
+  }
+
+  .inactive {
+    color: #8c8c8c;
+  }
+}
+
+editor {
+  background-color: #ffffff;
+  color: #000000;
+  .current-line {
+    background-color: #fcfaee;
+  }
+}
+
+ui {
+  background-color: #f2f2f2;
+  .hover {
+    background-color: #dadada;
+  }
+  .active {
+    background-color: #bebebe;
+  }
+  .dimmed {
+    color: #383a42;
+  }
+}
+
+list {
+  .hover {
+    background-color: #d5d5d5;
+  }
+  .selection-active {
+    background-color: #1974c2;
+    color: #ffffff;
+  }
+  .selection-inactive {
+    background-color: #effae6;
+    color: #383a42;
+  }
+}

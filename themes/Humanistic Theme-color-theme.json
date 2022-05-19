@@ -78,7 +78,7 @@
     "list.activeSelectionBackground": "#1974C2",
     "list.activeSelectionForeground": "#FFFFFF",
 
-    // aothough terminal has it's own section
+    // although terminal has it's own section
     "terminal.background": "#FFFFFF",
     "terminal.border": "#D4D4D4"
   },
