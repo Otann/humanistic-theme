@@ -1,3 +1,5 @@
+import { desaturate, light } from './utils.js'
+
 const primitives = {
   unset: '#FF01FF',
   transparent: '#00000000',
@@ -62,15 +64,21 @@ export const vars = {
 
   // supportive interface, mostly non-editable
   ui: {
+    fg: '#6e6e6e',
     bg: '#F2F2F2',
     // borders of interface areas
     border: '#D4D4D4',
     hover: {
-      fg: '#00000',
+      fg: '#000000',
       bg: '#DADADA',
     },
+    // active tab
     active: {
       bg: '#BEBEBE',
+    },
+    // selected element
+    selected: {
+      bg: '#D5D5D5',
     },
     icon: {
       fg: '#6e6e6e',
@@ -89,24 +97,23 @@ export const vars = {
       fg: '#080808',
     },
     comment: {
-      fg: '#8C8C8C',
-    },
-    folded: {
-      bg: 'E9F5E6',
-      fg: '414D41',
-    },
-    deleted: {
-      bg: 'F0F0F0',
-      fg: 'C3C3C3',
+      fg: light(desaturate(primitives.success.fg, 80), 40),
+      bg: '#EDEDED',
     },
     string: {
-      fg: '#067D17',
+      fg: primitives.success.fg,
     },
     number: {
-      fg: '#067D17',
+      fg: '#1750EB',
     },
     keyword: {
-      fg: '#067D17',
+      fg: '#0033B3',
+    },
+    function: {
+      fg: '#00627A',
+    },
+    invalid: {
+      fg: primitives.danger.fg,
     },
   },
 }
@@ -118,4 +125,23 @@ export const aliases = {
   added: vars.success,
   deleted: vars.warning,
   modified: vars.info,
+
+  list: {
+    normal: {
+      bg: vars.editor.bg,
+      fg: vars.editor.fg,
+    },
+    focus: {
+      bg: light(primitives.accent, 40),
+      fg: vars.editor.fg,
+    },
+    hover: {
+      bg: vars.transparent,
+      fg: vars.editor.fg,
+    },
+    selected: {
+      bg: vars.ui.bg,
+      fg: vars.editor.fg,
+    },
+  },
 }

@@ -1,4 +1,5 @@
 {
+  "$schema": "vscode://schemas/color-theme",
   "name": "Humanistic Theme",
   "colors": {
     // better integration with OSX
@@ -158,11 +159,7 @@
     },
     {
       "name": "Classes",
-      "scope": [
-        "entity.name.type",
-        "entity.other.inherited-class",
-        "support.class"
-      ],
+      "scope": ["entity.name.type", "entity.other.inherited-class", "support.class"],
       "settings": {
         "fontStyle": "bold",
         "foreground": "#7A3E9D"
@@ -257,10 +254,7 @@
     },
     {
       "name": "HTML: Attribute Names",
-      "scope": [
-        "meta.tag entity.other.attribute-name",
-        "entity.other.attribute-name.html"
-      ],
+      "scope": ["meta.tag entity.other.attribute-name", "entity.other.attribute-name.html"],
       "settings": {
         "fontStyle": "italic",
         "foreground": "#91B3E0"
@@ -275,12 +269,7 @@
     },
     {
       "name": "CSS: Selectors",
-      "scope": [
-        "meta.selector",
-        "meta.selector entity",
-        "meta.selector entity punctuation",
-        "entity.name.tag.css"
-      ],
+      "scope": ["meta.selector", "meta.selector entity", "meta.selector entity punctuation", "entity.name.tag.css"],
       "settings": {
         "foreground": "#7A3E9D"
       }
@@ -294,11 +283,7 @@
     },
     {
       "name": "CSS: Property Values",
-      "scope": [
-        "meta.property-value",
-        "meta.property-value constant.other",
-        "support.constant.property-value"
-      ],
+      "scope": ["meta.property-value", "meta.property-value constant.other", "support.constant.property-value"],
       "settings": {
         "foreground": "#448C27"
       }

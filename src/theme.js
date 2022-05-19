@@ -1,5 +1,5 @@
 import { vars, aliases } from './colors.js'
-import { alpha } from './utils.js'
+import { alpha, light } from './utils.js'
 
 /**
  * The contrast colors are typically only set for high contrast themes.
@@ -182,31 +182,76 @@ const progress_bar = {
  * @see https://code.visualstudio.com/api/references/theme-color#lists-and-trees
  */
 const lists_and_trees = {
-  // // List/Tree background color for the selected item when the list/tree is active.
-  // "list.activeSelectionBackground": `${vars.unset}`,
-  // // List/Tree foreground color for the selected item when the list/tree is active.
-  // "list.activeSelectionForeground": `${vars.unset}`,
-  // // List/Tree background color for the focused item when the list/tree is active.
-  // "list.focusBackground": `${vars.unset}`,
-  // // List/Tree foreground color for the focused item when the list/tree is active. An active list/tree has keyboard focus, an inactive does not.
-  // "list.focusForeground": `${vars.unset}`,
-  // // List/Tree background when hovering over items using the mouse.
-  // "list.hoverBackground": `${vars.unset}`,
-  // // List/Tree foreground when hovering over items using the mouse.
-  // "list.hoverForeground": `${vars.unset}`,
-  // // List/Tree background color for the selected item when the list/tree is inactive.
-  // "list.inactiveSelectionBackground": `${vars.unset}`,
-  // // List/Tree foreground color for the selected item when the list/tree is inactive. An active list/tree has keyboard focus, an inactive does not.
-  // "list.inactiveSelectionForeground": `${vars.unset}`,
-  // // List background color for the focused item when the list is inactive. An active list has keyboard focus, an inactive does not. Currently only supported in lists.
-  // "list.inactiveFocusBackground": `${vars.unset}`,
-  // // List/Tree foreground color for invalid items, for example an unresolved root in explorer.
-  // "list.invalidItemForeground": `${vars.unset}`,
-  // // List/Tree foreground color of the match highlights when searching inside the list/tree.
-  // "list.highlightForeground": `${vars.unset}`,
-  // // List/Tree drag and drop background when moving items around using the mouse.
-  // "list.dropBackground": `${vars.unset}`,
+  /**
+   * Active selection is when clicked with mouse
+   */
+  // List background color for the selected item when the list is active.
+  'list.activeSelectionBackground': `${aliases.list.selected.bg}`,
+  // List foreground color for the selected item when the list is active.
+  // NOTE: this also controls color inside `quickInput` focused item
+  'list.activeSelectionForeground': `${aliases.list.selected.fg}`,
+
+  // List background color for the selected item when the list/tree is inactive.
+  'list.inactiveSelectionBackground': `${aliases.list.selected.bg}`,
+  // List foreground color for the selected item when the list/tree is inactive. An active list/tree has keyboard focus, an inactive does not.
+  'list.inactiveSelectionForeground': `${aliases.list.selected.fg}`,
+
+  /**
+   * Focused is when moved with keyboard after selected with mouse
+   */
+  // List foreground color for the focused item when the list is active.
+  // An active list has keyboard focus, an inactive does not.
+  'list.focusForeground': `${aliases.list.focus.fg}`,
+  // List background color for the focused item when the list is active.
+  'list.focusBackground': `${aliases.list.focus.bg}`,
+  // List background color for the focused item when the list is inactive. An active list has keyboard focus, an inactive does not. Currently only supported in lists.
+  'list.inactiveFocusBackground': `${aliases.list.focus.bg}`,
+
+  // List background when hovering over items using the mouse.
+  'list.hoverBackground': `${aliases.list.hover.bg}`,
+  // List foreground when hovering over items using the mouse.
+  'list.hoverForeground': `${aliases.list.hover.fg}`,
+
+  // List foreground color for invalid items, for example an unresolved root in explorer.
+  'list.invalidItemForeground': `${vars.danger.fg}`,
+
+  // List foreground color of the match highlights when searching inside the list/tree.
+  'list.highlightForeground': `${vars.editor.fg}`,
+
+  // List drag and drop background when moving items around using the mouse.
+  'list.dropBackground': `${vars.ui.bg}`,
 }
+
+/**
+ * @see https://code.visualstudio.com/api/references/theme-color#quick-picker-colors
+ */
+const quick_picker_colors = {
+  // Quick picker (Quick Open) color for grouping borders.
+  'pickerGroup.border': `${vars.ui.border}`,
+  // Quick picker (Quick Open) color for grouping labels.
+  'pickerGroup.foreground': `${vars.ui.fg}`,
+  // Quick input background color.
+  // The quick input widget is the container for views like the color theme picker.
+  'quickInput.background': `${vars.ui.bg}`,
+  // Quick input foreground color. The quick input widget is the container for views like the color theme picker.
+  'quickInput.foreground': `${vars.editor.fg}`,
+  // Quick picker background color for the focused item.
+  'quickInputList.focusBackground': `${vars.ui.hover.bg}`,
+  // Quick picker foreground color for the focused item.
+  'quickInputList.focusForeground': `${vars.editor.fg}`,
+  // Quick picker icon foreground color for the focused item.
+  'quickInputList.focusIconForeground': `${vars.ui.icon.fg}`,
+  // Quick picker title background color.
+  // The quick picker widget is the container for pickers like the Command Palette.
+  'quickInputTitle.background': `${vars.ui.bg}`,
+}
+
+/**
+ * The Editor widget is shown in front of the editor content.
+ * Examples are the Find/Replace dialog, the suggestion widget, and the editor hover.
+ * @see https://code.visualstudio.com/api/references/theme-color#editor-widget-colors
+ */
+const editor_suggest_widget = {}
 
 /**
  * The Activity Bar is displayed either on the far left or right of the workbench and
@@ -487,7 +532,6 @@ const editor_colors = {
    */
   // The color used for the lightbulb actions icon.
   'editorLightBulb.foreground': `${vars.info.fg}`,
-
   // The color used for the lightbulb auto fix actions icon.
   'editorLightBulbAutoFix.foreground': `${vars.success.fg}`,
 
@@ -502,7 +546,7 @@ const editor_colors = {
   // Background color for folded ranges.
   // The color must not be opaque so as not to hide underlying decorations.
   // NOTE: this overlaps with the gutter border
-  'editor.foldBackground': `${vars.symbols.comment.fg}11`,
+  'editor.foldBackground': `${alpha(vars.editor.guides.inactive, 0.05)}`,
 
   // /**
   //  * This ruler is located beneath the scroll bar on the right edge of the editor and gives an overview of the decorations in the editor.
@@ -586,6 +630,136 @@ const editor_colors = {
 }
 
 /**
+ * For coloring inserted and removed text, use either a background or a border color but not both.
+ * @see https://code.visualstudio.com/api/references/theme-color#diff-editor-colors
+ */
+const diff_editor_colors = {
+  // // Background color for text that got inserted. The color must not be opaque to not hide underlying decorations.
+  // "diffEditor.insertedTextBackground": `${vars.unset}`,
+  // // Outline color for the text that got inserted.
+  // "diffEditor.insertedTextBorder": `${vars.unset}`,
+  // // Background color for text that got removed. The color must not be opaque to not hide underlying decorations.
+  // "diffEditor.removedTextBackground": `${vars.unset}`,
+  // // Outline color for text that got removed.
+  // "diffEditor.removedTextBorder": `${vars.unset}`,
+}
+
+/**
+ * The Editor widget is shown in front of the editor content.
+ * Examples are the Find/Replace dialog, the suggestion widget, and the editor hover.
+ * @see https://code.visualstudio.com/api/references/theme-color#editor-widget-colors
+ */
+const editor_widget_colors = {
+  // Background color of editor widgets, such as Find/Replace.
+  'editorWidget.background': `${vars.ui.bg}`,
+  // Border color of the editor widget unless the widget does not contain a border or defines its own border color.
+  'editorWidget.border': `${vars.ui.border}`,
+
+  /**
+   * `editorSuggestWidget` seem to inherit from `editorWidget`
+   */
+  // Background color of the suggestion widget. (override editorWidget.background)
+  // 'editorSuggestWidget.background': `${vars.unset}`,
+  // Border color of the suggestion widget.
+  // "editorSuggestWidget.border": `${vars.unset}`,
+  // Foreground color of the suggestion widget.
+  // "editorSuggestWidget.foreground": `${vars.unset}`,
+  // Color of the match highlights in the suggestion widget.
+  // "editorSuggestWidget.highlightForeground": `${vars.unset}`,
+  // Background color of the selected entry in the suggestion widget.
+  // "editorSuggestWidget.selectedBackground": `${vars.unset}`,
+
+  // Background color of the editor hover.
+  'editorHoverWidget.background': `${vars.ui.bg}`,
+  // Border color of the editor hover.
+  'editorHoverWidget.border': `${vars.ui.border}`,
+
+  // Exception widget background color.
+  'debugExceptionWidget.background': `${vars.ui.bg}`,
+  // Exception widget border color.
+  'debugExceptionWidget.border': `${vars.ui.border}`,
+
+  // Editor marker navigation widget background.
+  'editorMarkerNavigation.background': `${vars.ui.bg}`,
+
+  // Editor marker navigation widget error color.
+  'editorMarkerNavigationError.background': `${vars.ui.bg}`,
+  // Editor marker navigation widget warning color.
+  'editorMarkerNavigationWarning.background': `${vars.warning.bg}`,
+  // Editor marker navigation widget info color.
+  'editorMarkerNavigationInfo.background': `${vars.info.bg}`,
+}
+
+/**
+ * Panels are shown below the editor area and contain views like Output and Integrated Terminal.
+ * @see https://code.visualstudio.com/api/references/theme-color#panel-colors
+ */
+const panel_colors = {
+  // Panel background color.
+  'panel.background': `${vars.editor.bg}`,
+  // Panel border color to separate the panel from the editor.
+  'panel.border': `${vars.ui.border}`,
+  // Drag and drop feedback color for the panel title items. The color should have transparency so that the panel entries can still shine through.
+  'panel.dropBackground': `${vars.ui.shadow.bg}`,
+  // Border color for the active panel title.
+  // "panelTitle.activeBorder": `${vars.unset}`,
+  // Title color for the active panel.
+  // 'panelTitle.activeForeground': `${vars.unset}`,
+  // Title color for the inactive panel.
+  // 'panelTitle.inactiveForeground': `${vars.unset}`,
+}
+
+/**
+ * The Status Bar is shown in the bottom of the workbench.
+ * @see https://code.visualstudio.com/api/references/theme-color#status-bar-colors
+ */
+const status_bar_colors = {
+  // Standard Status Bar background color.
+  'statusBar.background': `${vars.ui.bg}`,
+  // Status Bar foreground color.
+  'statusBar.foreground': `${vars.ui.fg}`,
+  // Status Bar border color separating the Status Bar and editor.
+  'statusBar.border': `${vars.ui.border}`,
+  // Status Bar background color when a program is being debugged.
+  'statusBar.debuggingBackground': `${vars.warning.bg}`,
+  // Status Bar foreground color when a program is being debugged.
+  'statusBar.debuggingForeground': `${vars.warning.fg}`,
+  // Status Bar border color separating the Status Bar and editor when a program is being debugged.
+  'statusBar.debuggingBorder': `${vars.ui.border}`,
+  // Status Bar foreground color when no folder is opened.
+  'statusBar.noFolderForeground': `${vars.unset}`,
+  // Status Bar background color when no folder is opened.
+  'statusBar.noFolderBackground': `${vars.unset}`,
+  // Status Bar border color separating the Status Bar and editor when no folder is opened.
+  'statusBar.noFolderBorder': `${vars.unset}`,
+  // Status Bar item background color when clicking.
+  'statusBarItem.activeBackground': `${vars.ui.active.bg}`,
+  // Status Bar item background color when hovering.
+  'statusBarItem.hoverBackground': `${vars.ui.hover.bg}`,
+  // Status Bar prominent items background color. Prominent items stand out from other Status Bar entries to indicate importance. Change mode Toggle Tab Key Moves Focus from command palette to see an example.
+  'statusBarItem.prominentBackground': `${vars.success.bg}`,
+  // Status Bar prominent items background color when hovering. Prominent items stand out from other Status Bar entries to indicate importance. Change mode Toggle Tab Key Moves Focus from command palette to see an example.
+  'statusBarItem.prominentHoverBackground': `${vars.success.bg}`,
+}
+
+/**
+ * Title Bar Colors (macOS)
+ * @see https://code.visualstudio.com/api/references/theme-color#title-bar-colors
+ */
+const title_bar_colors = {
+  // Title Bar background when the window is active.
+  'titleBar.activeBackground': `${vars.editor.bg}`,
+  // Title Bar foreground when the window is active.
+  'titleBar.activeForeground': `${vars.editor.fg}`,
+  // Title Bar background when the window is inactive.
+  'titleBar.inactiveBackground': `${vars.ui.bg}`,
+  // Title Bar foreground when the window is inactive.
+  'titleBar.inactiveForeground': `${vars.ui.icon.fg}`,
+  // Title bar border color.
+  'titleBar.border': `${vars.ui.border}`,
+}
+
+/**
  * Follows everything from Theme Color guide
  * @see https://code.visualstudio.com/api/references/theme-color
  * @see https://gist.github.com/AndreasBackx/ab5c7df0ef214a798cfa8fdeaf59197f
@@ -609,53 +783,7 @@ export const colors = {
   ...breadcrumbs,
   ...editor_colors,
 
-  // //
-  // // Diff Editor Colors
-  // //
-  // // Background color for text that got inserted. The color must not be opaque to not hide underlying decorations.
-  // "diffEditor.insertedTextBackground": `${vars.unset}`,
-  // // Outline color for the text that got inserted.
-  // "diffEditor.insertedTextBorder": `${vars.unset}`,
-  // // Background color for text that got removed. The color must not be opaque to not hide underlying decorations.
-  // "diffEditor.removedTextBackground": `${vars.unset}`,
-  // // Outline color for text that got removed.
-  // "diffEditor.removedTextBorder": `${vars.unset}`,
-
-  // //
-  // // Editor Widget Colors
-  // //
-  // // Background color of editor widgets, such as Find/Replace.
-  // "editorWidget.background": `${vars.unset}`,
-  // // Border color of the editor widget unless the widget does not contain a border or defines its own border color.
-  // "editorWidget.border": `${vars.unset}`,
-  // // Background color of the suggestion widget.
-  // "editorSuggestWidget.background": `${vars.unset}`,
-  // // Border color of the suggestion widget.
-  // "editorSuggestWidget.border": `${vars.unset}`,
-  // // Foreground color of the suggestion widget.
-  // "editorSuggestWidget.foreground": `${vars.unset}`,
-  // // Color of the match highlights in the suggestion widget.
-  // "editorSuggestWidget.highlightForeground": `${vars.unset}`,
-  // // Background color of the selected entry in the suggestion widget.
-  // "editorSuggestWidget.selectedBackground": `${vars.unset}`,
-  // // Background color of the editor hover.
-  // "editorHoverWidget.background": `${vars.unset}`,
-  // // Border color of the editor hover.
-  // "editorHoverWidget.border": `${vars.unset}`,
-  // //
-  // // Exception widget background color.
-  // "debugExceptionWidget.background": `${vars.unset}`,
-  // // Exception widget border color.
-  // "debugExceptionWidget.border": `${vars.unset}`,
-  // //
-  // // Editor marker navigation widget background.
-  // "editorMarkerNavigation.background": `${vars.unset}`,
-  // // Editor marker navigation widget error color.
-  // "editorMarkerNavigationError.background": `${vars.unset}`,
-  // // Editor marker navigation widget warning color.
-  // "editorMarkerNavigationWarning.background": `${vars.unset}`,
-  // // Editor marker navigation widget info color.
-  // "editorMarkerNavigationInfo.background": `${vars.unset}`,
+  ...editor_widget_colors,
 
   // //
   // // Peek View Colors
@@ -711,85 +839,32 @@ export const colors = {
   // // Common ancestor overview ruler foreground for inline merge conflicts.
   // "editorOverviewRuler.commonContentForeground": `${vars.unset}`,
 
-  // //
-  // // Panel Colors
-  // //
-  // // Panel background color.
-  'panel.background': `${vars.editor.bg}`,
-  // // Panel border color to separate the panel from the editor.
-  'panel.border': `${vars.ui.border}`,
-  // // Drag and drop feedback color for the panel title items. The color should have transparency so that the panel entries can still shine through.
-  'panel.dropBackground': `${vars.ui.shadow.bg}`,
-  // // Border color for the active panel title.
-  // "panelTitle.activeBorder": `${vars.unset}`,
-  // // Title color for the active panel.
-  // 'panelTitle.activeForeground': `${vars.unset}`,
-  // // Title color for the inactive panel.
-  // 'panelTitle.inactiveForeground': `${vars.unset}`,
+  ...panel_colors,
+  ...status_bar_colors,
+  ...title_bar_colors,
 
-  // //
-  // // Status Bar Colors
-  // //
-  // // Standard Status Bar background color.
-  // "statusBar.background": `${vars.unset}`,
-  // // Status Bar foreground color.
-  // "statusBar.foreground": `${vars.unset}`,
-  // // Status Bar border color separating the Status Bar and editor.
-  // "statusBar.border": `${vars.unset}`,
-  // // Status Bar background color when a program is being debugged.
-  // "statusBar.debuggingBackground": `${vars.unset}`,
-  // // Status Bar foreground color when a program is being debugged.
-  // "statusBar.debuggingForeground": `${vars.unset}`,
-  // // Status Bar border color separating the Status Bar and editor when a program is being debugged.
-  // "statusBar.debuggingBorder": `${vars.unset}`,
-  // // Status Bar foreground color when no folder is opened.
-  // "statusBar.noFolderForeground": `${vars.unset}`,
-  // // Status Bar background color when no folder is opened.
-  // "statusBar.noFolderBackground": `${vars.unset}`,
-  // // Status Bar border color separating the Status Bar and editor when no folder is opened.
-  // "statusBar.noFolderBorder": `${vars.unset}`,
-  // // Status Bar item background color when clicking.
-  // "statusBarItem.activeBackground": `${vars.unset}`,
-  // // Status Bar item background color when hovering.
-  // "statusBarItem.hoverBackground": `${vars.unset}`,
-  // // Status Bar prominent items background color. Prominent items stand out from other Status Bar entries to indicate importance. Change mode Toggle Tab Key Moves Focus from command palette to see an example.
-  // "statusBarItem.prominentBackground": `${vars.unset}`,
-  // // Status Bar prominent items background color when hovering. Prominent items stand out from other Status Bar entries to indicate importance. Change mode Toggle Tab Key Moves Focus from command palette to see an example.
-  // "statusBarItem.prominentHoverBackground": `${vars.unset}`,
-
-  // //
-  // // Title Bar Colors (macOS)
-  // //
-  // // Title Bar background when the window is active.
-  // "titleBar.activeBackground": `${vars.unset}`,
-  // // Title Bar foreground when the window is active.
-  // "titleBar.activeForeground": `${vars.unset}`,
-  // // Title Bar background when the window is inactive.
-  // "titleBar.inactiveBackground": `${vars.unset}`,
-  // // Title Bar foreground when the window is inactive.
-  // "titleBar.inactiveForeground": `${vars.unset}`,
-  // // Title bar border color.
-  // "titleBar.border": `${vars.unset}`,
-
-  // //
-  // // Notification Colors
-  // //
-  // // Notification Center border color.
-  // "notificationCenter.border": `${vars.unset}`,
-  // // Notification Center header foreground color.
-  // "notificationCenterHeader.foreground": `${vars.unset}`,
-  // // Notification Center header background color.
-  // "notificationCenterHeader.background": `${vars.unset}`,
-  // // Notification toast border color.
-  // "notificationToast.border": `${vars.unset}`,
-  // // Notification foreground color.
-  // "notifications.foreground": `${vars.unset}`,
-  // // Notification background color.
-  // "notifications.background": `${vars.unset}`,
-  // // Notification border color separating from other notifications in the Notification Center.
-  // "notifications.border": `${vars.unset}`,
-  // // Notification links foreground color.
-  // "notificationLink.foreground": `${vars.unset}`,
+  /**
+   * Notification Colors
+   * Notification toasts slide up from the bottom-right of the workbench.
+   * Once opened in the Notification Center, they are displayed in a list with a header:
+   * @see https://code.visualstudio.com/api/references/theme-color#notification-colors
+   */
+  // Notification Center border color.
+  'notificationCenter.border': `${vars.ui.border}`,
+  // Notification Center header foreground color.
+  'notificationCenterHeader.foreground': `${vars.ui.fg}`,
+  // Notification Center header background color.
+  'notificationCenterHeader.background': `${vars.ui.bg}`,
+  // Notification toast border color.
+  'notificationToast.border': `${vars.ui.border}`,
+  // Notification foreground color.
+  'notifications.foreground': `${vars.ui.fg}`,
+  // Notification background color.
+  'notifications.background': `${vars.ui.bg}`,
+  // Notification border color separating from other notifications in the Notification Center.
+  'notifications.border': `${vars.ui.border}`,
+  // Notification links foreground color.
+  'notificationLink.foreground': `${vars.info.fg}`,
 
   // //
   // // Extensions
@@ -801,87 +876,152 @@ export const colors = {
   // // Extension view button background hover color.
   // "extensionButton.prominentHoverBackground": `${vars.unset}`,
 
-  // //
-  // // Quick Picker
-  // //
-  // // Quick picker (Quick Open) color for grouping borders.
-  // "pickerGroup.border": `${vars.unset}`,
-  // // Quick picker (Quick Open) color for grouping labels.
-  // "pickerGroup.foreground": `${vars.unset}`,
+  ...quick_picker_colors,
 
-  // //
-  // // Integrated Terminal Colors
-  // //
-  // // The background of the Integrated Terminal's viewport.
-  // "terminal.background": `${vars.unset}`,
-  // // The default foreground color of the Integrated Terminal.
-  // "terminal.foreground": `${vars.unset}`,
-  // // 'Black' ANSI color in the terminal.
-  // "terminal.ansiBlack": `${vars.unset}`,
-  // // 'Blue' ANSI color in the terminal.
-  // "terminal.ansiBlue": `${vars.unset}`,
-  // // 'BrightBlack' ANSI color in the terminal.
-  // "terminal.ansiBrightBlack": `${vars.unset}`,
-  // // 'BrightBlue' ANSI color in the terminal.
-  // "terminal.ansiBrightBlue": `${vars.unset}`,
-  // // 'BrightCyan' ANSI color in the terminal.
-  // "terminal.ansiBrightCyan": `${vars.unset}`,
-  // // 'BrightGreen' ANSI color in the terminal.
-  // "terminal.ansiBrightGreen": `${vars.unset}`,
-  // // 'BrightMagenta' ANSI color in the terminal.
-  // "terminal.ansiBrightMagenta": `${vars.unset}`,
-  // // 'BrightRed' ANSI color in the terminal.
-  // "terminal.ansiBrightRed": `${vars.unset}`,
-  // // 'BrightWhite' ANSI color in the terminal.
-  // "terminal.ansiBrightWhite": `${vars.unset}`,
-  // // 'BrightYellow' ANSI color in the terminal.
-  // "terminal.ansiBrightYellow": `${vars.unset}`,
-  // // 'Cyan' ANSI color in the terminal.
-  // "terminal.ansiCyan": `${vars.unset}`,
-  // // 'Green' ANSI color in the terminal.
-  // "terminal.ansiGreen": `${vars.unset}`,
-  // // 'Magenta' ANSI color in the terminal.
-  // "terminal.ansiMagenta": `${vars.unset}`,
-  // // 'Red' ANSI color in the terminal.
-  // "terminal.ansiRed": `${vars.unset}`,
-  // // 'White' ANSI color in the terminal.
-  // "terminal.ansiWhite": `${vars.unset}`,
-  // // 'Yellow' ANSI color in the terminal.
-  // "terminal.ansiYellow": `${vars.unset}`,
-  // // The selection background color of the terminal.
-  // "terminal.selectionBackground": `${vars.unset}`,
-  // // The background color of the terminal cursor. Allows customizing the color of a character overlapped by a block cursor.
-  // "terminalCursor.background": `${vars.unset}`,
-  // // The foreground color of the terminal cursor.
-  // "terminalCursor.foreground": `${vars.unset}`,
+  //
+  // Integrated Terminal Colors
+  //
+  // The background of the Integrated Terminal's viewport.
+  'terminal.background': `${vars.editor.bg}`,
+  // The default foreground color of the Integrated Terminal.
+  'terminal.foreground': `${vars.editor.fg}`,
+  'terminal.ansiWhite': '#BBBBBB',
+  'terminal.ansiBlack': '#000000',
+  'terminal.ansiBlue': '#325CC0',
+  'terminal.ansiCyan': '#0083B2',
+  'terminal.ansiGreen': '#448C27',
+  'terminal.ansiMagenta': '#7A3E9D',
+  'terminal.ansiRed': '#AA3731',
+  'terminal.ansiYellow': '#CB9000',
+  'terminal.ansiBrightWhite': '#FFFFFF',
+  'terminal.ansiBrightBlack': '#777777',
+  'terminal.ansiBrightBlue': '#007ACC',
+  'terminal.ansiBrightCyan': '#00AACB',
+  'terminal.ansiBrightGreen': '#60CB00',
+  'terminal.ansiBrightMagenta': '#E64CE6',
+  'terminal.ansiBrightRed': '#F05050',
+  'terminal.ansiBrightYellow': '#FFBC5D',
+  // The selection background color of the terminal.
+  'terminal.selectionBackground': `${vars.editor.selection.bg}`,
+  // The background color of the terminal cursor.
+  // Allows customizing the color of a character overlapped by a block cursor.
+  'terminalCursor.background': `${vars.accent}`,
+  // The foreground color of the terminal cursor.
+  'terminalCursor.foreground': `${vars.editor.bg}`,
 
-  // //
-  // // Debug
-  // //
-  // // Debug toolbar background color.
-  // "debugToolBar.background": `${vars.unset}`,
+  //
+  // Debug
+  //
+  // Debug toolbar background color.
+  'debugToolBar.background': `${vars.ui.bg}`,
 
-  // //
-  // // Welcome Page
-  // //
-  // // Background color for the buttons on the Welcome page.
-  // "welcomePage.buttonBackground": `${vars.unset}`,
-  // // Hover background color for the buttons on the Welcome page.
-  // "welcomePage.buttonHoverBackground": `${vars.unset}`,
-  // // Background color for the embedded editors on the Interactive Playground.
-  // "walkThrough.embeddedEditorBackground": `${vars.unset}`,
+  /**
+   * Welcome Page
+   * @see https://code.visualstudio.com/api/references/theme-color#welcome-page-colors
+   */
+  // Background color for the Welcome page.
+  'welcomePage.background': `${vars.ui.bg}`,
+  // Foreground color for the Welcome page progress bars.
+  'welcomePage.progress.background': `${vars.accent}`,
+  // Background color for the Welcome page progress bars.
+  'welcomePage.progress.foreground': `${vars.ui.fg}`,
+  // Background color for the tiles on the Get Started page.
+  'welcomePage.tileBackground': `${vars.ui.bg}`,
+  // Hover background color for the tiles on the Get Started.
+  'welcomePage.tileHoverBackground': `${vars.ui.bg}`,
+  // Shadow color for the Welcome page walkthrough category buttons.
+  'welcomePage.tileShadow': `${vars.ui.shadow.bg}`,
+  // Background color for the embedded editors on the Interactive Playground.
+  'walkThrough.embeddedEditorBackground': `${vars.editor.bg}`,
 
-  // //
-  // // Git Colors
-  // //
-  // // Color for modified git resources. Used file labels and the SCM viewlet.
-  // "gitDecoration.modifiedResourceForeground": `${vars.unset}`,
-  // // Color for deleted git resources. Used file labels and the SCM viewlet.
-  // "gitDecoration.deletedResourceForeground": `${vars.unset}`,
-  // // Color for untracked git resources. Used file labels and the SCM viewlet.
-  // "gitDecoration.untrackedResourceForeground": `${vars.unset}`,
-  // // Color for ignored git resources. Used file labels and the SCM viewlet.
-  // "gitDecoration.ignoredResourceForeground": `${vars.unset}`,
-  // // Color for conflicting git resources. Used file labels and the SCM viewlet.
-  // "gitDecoration.conflictingResourceForeground": `${vars.unset}`,
+  /**
+   * Git colors
+   * @see https://code.visualstudio.com/api/references/theme-color#git-colors
+   */
+  // Color for modified git resources. Used file labels and the SCM viewlet.
+  'gitDecoration.modifiedResourceForeground': `${aliases.modified.fg}`,
+  // Color for deleted git resources. Used file labels and the SCM viewlet.
+  'gitDecoration.deletedResourceForeground': `${aliases.deleted.fg}`,
+  // Color for untracked git resources. Used file labels and the SCM viewlet.
+  'gitDecoration.untrackedResourceForeground': `${vars.warning.fg}`,
+  // Color for ignored git resources. Used file labels and the SCM viewlet.
+  'gitDecoration.ignoredResourceForeground': `${vars.hint.fg}`,
+  // Color for conflicting git resources. Used file labels and the SCM viewlet.
+  'gitDecoration.conflictingResourceForeground': `${vars.danger.fg}`,
+}
+
+/**
+ * Backgrounds are not supported unfortunately
+ * @see https://github.com/tonsky/vscode-theme-alabaster
+ */
+export const textMateRules = [
+  {
+    name: 'Comments',
+    scope: ['comment', 'punctuation.definition.comment'],
+    settings: {
+      foreground: `${vars.symbols.comment.fg}`,
+    },
+  },
+  {
+    name: 'Strings',
+    scope: ['string', 'string.regexp', 'constant.other.symbol'],
+    settings: {
+      foreground: `${vars.symbols.string.fg}`,
+    },
+  },
+  {
+    name: 'Strings: Escape Sequences',
+    scope: 'constant.character.escape',
+    settings: {
+      foreground: `${vars.editor.guides.active.fg}`,
+    },
+  },
+  {
+    name: 'Numbers, Characters',
+    scope: ['constant.numeric', 'constant.character', 'constant.keyword', 'constant'],
+    settings: {
+      foreground: `${vars.symbols.number.fg}`,
+    },
+  },
+  {
+    name: 'Global definitions',
+    scope: 'entity.name',
+    settings: {
+      foreground: `${vars.symbols.default.fg}`,
+    },
+  },
+  {
+    name: 'Punctuation',
+    scope: 'punctuation',
+    settings: {
+      foreground: `${light(vars.symbols.default.fg, 10)}`,
+    },
+  },
+  {
+    name: 'Invalid',
+    scope: 'invalid',
+    settings: {
+      foreground: `${vars.symbols.invalid.fg}`,
+    },
+  },
+]
+
+/**
+ * Configuration for Semantic syntax highlighting
+ * @see https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide#standard-token-types-and-modifiers
+ */
+const semantic = {
+  tokenColors: [
+    {
+      scope: 'comment',
+      settings: {
+        foreground: '#dd0000',
+        fontStyle: 'italic',
+      },
+    },
+  ],
+  semanticHighlighting: true,
+  semanticTokenColors: {
+    'variable.readonly:java': '#ff0011',
+  },
 }

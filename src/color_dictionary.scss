@@ -111,3 +111,26 @@ list {
     color: #383a42;
   }
 }
+
+symbols {
+  .default {
+    color: #080808;
+  }
+  .comment {
+    color: #b2b2b2;
+    background-color: #ededed;
+  }
+  .folded {
+    color: #414d41;
+    background-color: #e9f5e6;
+  }
+  .string {
+    color: #067d17;
+  }
+  .number {
+    color: #1750eb;
+  }
+  .keyword {
+    color: #0033b3;
+  }
+}

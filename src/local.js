@@ -1,14 +1,17 @@
-import fs from "fs";
-import { colors } from "./theme.js";
+import fs from 'fs'
+import { colors, textMateRules } from './theme.js'
 
 const settings = {
-  "workbench.colorCustomizations": {
+  'workbench.colorCustomizations': {
     ...colors,
   },
-};
+  'editor.tokenColorCustomizations': {
+    textMateRules,
+  },
+}
 
-const filename = "./.vscode/settings.json";
+const filename = './.vscode/settings.json'
 
-fs.writeFileSync(filename, JSON.stringify(settings, null, 2));
+fs.writeFileSync(filename, JSON.stringify(settings, null, 2))
 
-console.log(`Updated ${filename} at ${new Date()}`);
+console.log(`Updated ${filename} at ${new Date()}`)
