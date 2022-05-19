@@ -151,11 +151,11 @@ const scrollbar_control = {
   // Scroll Bar shadow to indicate that the view is scrolled.
   'scrollbar.shadow': `${vars.ui.border}`,
   // Slider background color when active.
-  'scrollbarSlider.activeBackground': `${vars.accent}88`,
+  'scrollbarSlider.activeBackground': `${alpha(vars.accent)}`,
   // Slider background color.
-  'scrollbarSlider.background': `${vars.ui.hover.bg}88`,
+  'scrollbarSlider.background': `${alpha(vars.ui.hover.bg)}`,
   // Slider background color when hovering.
-  'scrollbarSlider.hoverBackground': `${vars.ui.hover.bg}88`,
+  'scrollbarSlider.hoverBackground': `${alpha(vars.ui.hover.bg)}`,
 }
 
 /**
@@ -622,13 +622,19 @@ const editor_colors = {
   // Background color of the editor gutter. The gutter contains the glyph margins and the line numbers.
   'editorGutter.background': `${vars.ui.bg}`,
   // Editor gutter background color for lines that are modified.
-  'editorGutter.modifiedBackground': `${aliases.modified.fg}`,
+  'editorGutter.modifiedBackground': `${alpha(aliases.modified.fg)}`,
   // Editor gutter background color for lines that are added.
-  'editorGutter.addedBackground': `${aliases.added.fg}`,
+  'editorGutter.addedBackground': `${alpha(aliases.added.fg, 0.4)}`,
   // Editor gutter background color for lines that are deleted.
   'editorGutter.deletedBackground': `${aliases.deleted.fg}`,
+  // Editor gutter decoration color for commenting ranges.
+  'editorGutter.commentRangeForeground': `${aliases.guides.active.fg}`,
 }
 
+//
+//
+
+//
 /**
  * For coloring inserted and removed text, use either a background or a border color but not both.
  * @see https://code.visualstudio.com/api/references/theme-color#diff-editor-colors
