@@ -107,7 +107,7 @@ const dropdown_control = {
   // Dropdown background.
   'dropdown.background': `${vars.ui.control.bg}`,
   // Dropdown list background
-  'dropdown.listBackground': `${vars.list.bg}`,
+  'dropdown.listBackground': `${vars.ui.bg}`,
   // Dropdown border
   'dropdown.border': `${vars.ui.control.border}`,
   // Dropdown foreground
@@ -707,7 +707,7 @@ const panel_colors = {
   // Panel border color to separate the panel from the editor.
   'panel.border': `${vars.ui.border}`,
   // Drag and drop feedback color for the panel title items. The color should have transparency so that the panel entries can still shine through.
-  'panel.dropBackground': `${vars.ui.drop.bg}`,
+  // 'panel.dropBackground': `${vars.ui.drop.bg}`,
   // Border color for the active panel title.
   // "panelTitle.activeBorder": `${vars.unset}`,
   // Title color for the active panel.
