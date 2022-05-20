@@ -1,3 +1,7 @@
+unset {
+  color: #ff01ff;
+}
+
 border {
   color: #d4d4d4;
 }
@@ -183,5 +187,11 @@ symbols {
   }
   .green {
     color: #859900;
+  }
+}
+
+.blueprint {
+  .primary {
+    color: #215db0;
   }
 }

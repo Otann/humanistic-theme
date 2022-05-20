@@ -23,15 +23,15 @@ const base_colors = {
   // Overall foreground color. This color is only used if not overridden by a component.
   foreground: `${vars.editor.fg}`,
   // Overall foreground for disabled elements. This color is only used if not overridden by a component.
-  disabledForeground: `${vars.editor.inactive.fg}`,
+  disabledForeground: `${vars.ui.disabled.fg}`,
   // Shadow color of widgets such as Find/Replace inside the editor.
-  'widget.shadow': `${vars.ui.border}50`,
+  'widget.shadow': `${vars.ui.border}`,
   // Background color of text selections in the workbench (for input fields or text areas, does not apply to selections within the editor and the terminal).
   'selection.background': `${vars.editor.selection.bg}`,
   // Foreground color for description text providing additional information, for example for a label.
-  descriptionForeground: `${vars.editor.inactive.fg}`,
+  descriptionForeground: `${vars.ui.fg}`,
   // Overall foreground color for error messages (this color is only used if not overridden by a component).
-  errorForeground: `#FFCCCC`,
+  errorForeground: `${vars.intent.danger.fg}`,
   // The default color for icons in the workbench.
   'icon.foreground': `${vars.ui.icon.fg}`,
   // The hover border color for draggable sashes.
@@ -126,19 +126,19 @@ const input_control = {
   // Input box foreground.
   'input.foreground': `${vars.editor.fg}`,
   // Input box foreground color for placeholder text.
-  'input.placeholderForeground': `${vars.editor.inactive.fg}`,
+  'input.placeholderForeground': `${vars.ui.disabled.fg}`,
   // Border color of activated options in input fields.
   'inputOption.activeBorder': `${vars.accent}`,
   // Input validation background color for error severity.
-  'inputValidation.errorBackground': `${vars.danger.bg}`,
+  'inputValidation.errorBackground': `${vars.intent.danger.bg}`,
   // Input validation border color for error severity.
   'inputValidation.errorBorder': `${vars.transparent}`,
   // Input validation background color for information severity.
-  'inputValidation.infoBackground': `${vars.info.bg}`,
+  'inputValidation.infoBackground': `${vars.intent.neutral.bg}`,
   // Input validation border color for information severity.
   'inputValidation.infoBorder': `${vars.transparent}`,
   // Input validation background color for information warning.
-  'inputValidation.warningBackground': `${vars.warning.bg}`,
+  'inputValidation.warningBackground': `${vars.intent.warning.bg}`,
   // Input validation border color for warning severity.
   'inputValidation.warningBorder': `${vars.transparent}`,
 }
@@ -213,7 +213,7 @@ const lists_and_trees = {
   'list.hoverForeground': `${aliases.list.hover.fg}`,
 
   // List foreground color for invalid items, for example an unresolved root in explorer.
-  'list.invalidItemForeground': `${vars.danger.fg}`,
+  'list.invalidItemForeground': `${vars.intent.danger.fg}`,
 
   // List foreground color of the match highlights when searching inside the list/tree.
   'list.highlightForeground': `${vars.editor.fg}`,
@@ -391,9 +391,9 @@ const editor_colors = {
   // Editor default foreground color.
   'editor.foreground': `${vars.editor.fg}`,
   // Color of editor line numbers.
-  'editorLineNumber.foreground': `${vars.editor.inactive.fg}`,
+  'editorLineNumber.foreground': `${vars.ui.disabled.fg}`,
   // Color of the active editor line number.
-  'editorLineNumber.activeForeground': `${vars.editor.inactive.fg}`,
+  'editorLineNumber.activeForeground': `${vars.ui.disabled.fg}`,
   // The background color of the editor cursor. Allows customizing the color of a character overlapped by a block cursor.
   'editorCursor.background': `${vars.accent}`,
   // Color of the editor cursor.
@@ -404,15 +404,15 @@ const editor_colors = {
    * In addition to the selection also all regions with the same content are highlighted.
    */
   // Color of the editor selection.
-  'editor.selectionBackground': `${alpha(vars.editor.selection.bg, 0.5)}`,
+  'editor.selectionBackground': `${vars.editor.selection.bg}`,
   // Color of the selected text for high contrast.
   'editor.selectionForeground': `${vars.editor.fg}`,
   // Color of the selection in an inactive editor.
   // The color must not be opaque to not hide underlying decorations.
-  'editor.inactiveSelectionBackground': `${alpha(vars.editor.selection.bg, 0.3)}`,
+  'editor.inactiveSelectionBackground': `${vars.editor.selection.bg}`,
   // Color for regions with the same content as the selection.
   // The color must not be opaque to not hide underlying decorations.
-  'editor.selectionHighlightBackground': `${alpha(vars.editor.selection.bg, 0.3)}`,
+  'editor.selectionHighlightBackground': `${vars.editor.highlights.text.bg}`,
   // Border color for regions with the same content as the selection.
   'editor.selectionHighlightBorder': `${vars.transparent}`,
 
@@ -440,10 +440,10 @@ const editor_colors = {
   'editor.findMatchBackground': `${vars.editor.highlights.search_current.bg}`,
   // Color of the other search matches.
   // The color must not be opaque to not hide underlying decorations.
-  'editor.findMatchHighlightBackground': `${alpha(vars.editor.highlights.search_others.bg)}`,
+  'editor.findMatchHighlightBackground': `${vars.editor.highlights.search_others.bg}`,
   // Color the range limiting the search (Enable 'Find in Selection' in the find widget).
   // The color must not be opaque to not hide underlying decorations.
-  'editor.findRangeHighlightBackground': `${alpha(vars.editor.highlights.search_others.bg)}`,
+  'editor.findRangeHighlightBackground': `${vars.editor.highlights.search_range.bg}`,
   // Border color of the current search match.
   'editor.findMatchBorder': `${vars.transparent}`,
   // Border color of the other search matches.
@@ -483,7 +483,7 @@ const editor_colors = {
   // Background color of highlighted ranges, used by Quick Open, Symbol in File and Find features.
   // Highlights line background when moving between find/replace results
   // The color must not be opaque to not hide underlying decorations.
-  'editor.rangeHighlightBackground': `${alpha(vars.editor.highlights.search_others.bg, 0.2)}`,
+  'editor.rangeHighlightBackground': `${vars.editor.highlights.search_range.bg}`,
   // Background color of the border around highlighted ranges.
   'editor.rangeHighlightBorder': `${vars.transparent}`,
 
@@ -525,15 +525,15 @@ const editor_colors = {
    * Appears as an insert between code lines with extra metadata
    */
   // Foreground color of an editor CodeLens.
-  'editorCodeLens.foreground': `${vars.symbols.comment.fg}`,
+  'editorCodeLens.foreground': `${vars.code.comment.fg}`,
 
   /**
    * Lightbulb
    */
   // The color used for the lightbulb actions icon.
-  'editorLightBulb.foreground': `${vars.info.fg}`,
+  'editorLightBulb.foreground': `${vars.bp.intent.neutral.fg}`,
   // The color used for the lightbulb auto fix actions icon.
-  'editorLightBulbAutoFix.foreground': `${vars.success.fg}`,
+  'editorLightBulbAutoFix.foreground': `${vars.bp.intent.primary.fg}`,
 
   // Background color behind matching brackets.
   'editorBracketMatch.background': `${vars.editor.guides.active.fg}`,
@@ -577,18 +577,18 @@ const editor_colors = {
   'editorOverviewRuler.wordHighlightStrongForeground': `${vars.editor.highlights.symbol_write.bg}`,
 
   // Overview ruler marker color for modified content.
-  'editorOverviewRuler.modifiedForeground': `${aliases.modified.bg}`,
+  'editorOverviewRuler.modifiedForeground': `${vars.git.ruler.modified}`,
   // Overview ruler marker color for added content.
-  'editorOverviewRuler.addedForeground': `${aliases.added.bg}`,
+  'editorOverviewRuler.addedForeground': `${vars.git.ruler.added}`,
   // Overview ruler marker color for deleted content.
-  'editorOverviewRuler.deletedForeground': `${aliases.deleted.bg}`,
+  'editorOverviewRuler.deletedForeground': `${vars.git.ruler.deleted}`,
 
   // Overview ruler marker color for errors.
-  'editorOverviewRuler.errorForeground': `${vars.danger.fg}`,
+  'editorOverviewRuler.errorForeground': `${vars.intent.danger.fg}`,
   // Overview ruler marker color for warnings.
-  'editorOverviewRuler.warningForeground': `${vars.warning.fg}`,
+  'editorOverviewRuler.warningForeground': `${vars.intent.warning.fg}`,
   // Overview ruler marker color for infos.
-  'editorOverviewRuler.infoForeground': `${vars.info.fg}`,
+  'editorOverviewRuler.infoForeground': `${vars.intent.neutral.fg}`,
 
   // Overview ruler marker color for matching brackets.
   'editorOverviewRuler.bracketMatchForeground': `${vars.editor.guides.active.fg}`,
@@ -597,38 +597,38 @@ const editor_colors = {
    * Seems like enabling either border or background disables the squiggles
    */
   // Foreground color of error squiggles in the editor.
-  'editorError.foreground': `${vars.danger.fg}88`,
+  'editorError.foreground': `${vars.intent.danger.fg}`,
   // Border color of error squiggles in the editor.
   // "editorError.border": `${vars.danger.fg}`,
   // Background color of error text in the editor.
   // The color must not be opaque so as not to hide underlying decorations.
-  'editorError.background': `${vars.danger.bg}55`,
+  'editorError.background': `${vars.intent.danger.bg}`,
   // ---
   // Foreground color of warning squiggles in the editor.
-  'editorWarning.foreground': `${vars.warning.fg}88`,
+  'editorWarning.foreground': `${vars.intent.warning.fg}`,
   // Border color of warning squiggles in the editor.
   // "editorWarning.border": `${vars.warning.bg}`,
   // ---
   // Foreground color of info squiggles in the editor.
-  'editorInfo.foreground': `${vars.info.fg}88`,
+  'editorInfo.foreground': `${vars.intent.neutral.fg}`,
   // Border color of info squiggles in the editor.
   // "editorInfo.border": `${vars.info.bg}`,
   // ---
   // Foreground color of hints in the editor.
-  'editorHint.foreground': `${vars.hint.fg}88`,
+  'editorHint.foreground': `${vars.intent.neutral.fg}`,
   // Border color of hints in the editor.
   // "editorHint.border": `${vars.hint.fg}`,
 
   // Background color of the editor gutter. The gutter contains the glyph margins and the line numbers.
   'editorGutter.background': `${vars.ui.bg}`,
   // Editor gutter background color for lines that are modified.
-  'editorGutter.modifiedBackground': `${alpha(aliases.modified.fg)}`,
+  'editorGutter.modifiedBackground': `${vars.git.gutter.modified}`,
   // Editor gutter background color for lines that are added.
-  'editorGutter.addedBackground': `${alpha(aliases.added.fg, 0.4)}`,
+  'editorGutter.addedBackground': `${vars.git.gutter.added}`,
   // Editor gutter background color for lines that are deleted.
-  'editorGutter.deletedBackground': `${aliases.deleted.fg}`,
+  'editorGutter.deletedBackground': `${vars.git.gutter.deleted}`,
   // Editor gutter decoration color for commenting ranges.
-  'editorGutter.commentRangeForeground': `${aliases.guides.active.fg}`,
+  'editorGutter.commentRangeForeground': `${vars.git.gutter.comment}`,
 }
 
 //
@@ -691,9 +691,9 @@ const editor_widget_colors = {
   // Editor marker navigation widget error color.
   'editorMarkerNavigationError.background': `${vars.ui.bg}`,
   // Editor marker navigation widget warning color.
-  'editorMarkerNavigationWarning.background': `${vars.warning.bg}`,
+  'editorMarkerNavigationWarning.background': `${vars.intent.warning.bg}`,
   // Editor marker navigation widget info color.
-  'editorMarkerNavigationInfo.background': `${vars.info.bg}`,
+  'editorMarkerNavigationInfo.background': `${vars.intent.neutral.bg}`,
 }
 
 /**
@@ -727,9 +727,9 @@ const status_bar_colors = {
   // Status Bar border color separating the Status Bar and editor.
   'statusBar.border': `${vars.ui.border}`,
   // Status Bar background color when a program is being debugged.
-  'statusBar.debuggingBackground': `${vars.warning.bg}`,
+  'statusBar.debuggingBackground': `${vars.intent.warning.bg}`,
   // Status Bar foreground color when a program is being debugged.
-  'statusBar.debuggingForeground': `${vars.warning.fg}`,
+  'statusBar.debuggingForeground': `${vars.intent.warning.fg}`,
   // Status Bar border color separating the Status Bar and editor when a program is being debugged.
   'statusBar.debuggingBorder': `${vars.ui.border}`,
   // Status Bar foreground color when no folder is opened.
@@ -743,9 +743,9 @@ const status_bar_colors = {
   // Status Bar item background color when hovering.
   'statusBarItem.hoverBackground': `${vars.ui.hover.bg}`,
   // Status Bar prominent items background color. Prominent items stand out from other Status Bar entries to indicate importance. Change mode Toggle Tab Key Moves Focus from command palette to see an example.
-  'statusBarItem.prominentBackground': `${vars.success.bg}`,
+  'statusBarItem.prominentBackground': `${vars.intent.success.bg}`,
   // Status Bar prominent items background color when hovering. Prominent items stand out from other Status Bar entries to indicate importance. Change mode Toggle Tab Key Moves Focus from command palette to see an example.
-  'statusBarItem.prominentHoverBackground': `${vars.success.bg}`,
+  'statusBarItem.prominentHoverBackground': `${vars.intent.success.bg}`,
 }
 
 /**
@@ -870,7 +870,7 @@ export const colors = {
   // Notification border color separating from other notifications in the Notification Center.
   'notifications.border': `${vars.ui.border}`,
   // Notification links foreground color.
-  'notificationLink.foreground': `${vars.info.fg}`,
+  'notificationLink.foreground': `${vars.editor.link.fg}`,
 
   // //
   // // Extensions
@@ -908,12 +908,12 @@ export const colors = {
   'terminal.ansiBrightRed': '#F05050',
   'terminal.ansiBrightYellow': '#FFBC5D',
   // The selection background color of the terminal.
-  'terminal.selectionBackground': `${vars.editor.selection.bg}`,
+  'terminal.selectionBackground': `${alpha(vars.editor.selection.bg)}`,
   // The background color of the terminal cursor.
   // Allows customizing the color of a character overlapped by a block cursor.
-  'terminalCursor.background': `${vars.accent}`,
+  'terminalCursor.background': `${vars.editor.bg}`,
   // The foreground color of the terminal cursor.
-  'terminalCursor.foreground': `${vars.editor.bg}`,
+  'terminalCursor.foreground': `${alpha(vars.accent, 0.8)}`,
 
   //
   // Debug
@@ -945,15 +945,20 @@ export const colors = {
    * @see https://code.visualstudio.com/api/references/theme-color#git-colors
    */
   // Color for modified git resources. Used file labels and the SCM viewlet.
-  'gitDecoration.modifiedResourceForeground': `${aliases.modified.fg}`,
+  'gitDecoration.modifiedResourceForeground': `${vars.git.labels.modified}`,
   // Color for deleted git resources. Used file labels and the SCM viewlet.
-  'gitDecoration.deletedResourceForeground': `${aliases.deleted.fg}`,
+  'gitDecoration.deletedResourceForeground': `${vars.git.labels.deleted}`,
   // Color for untracked git resources. Used file labels and the SCM viewlet.
-  'gitDecoration.untrackedResourceForeground': `${vars.warning.fg}`,
+  'gitDecoration.untrackedResourceForeground': `${vars.git.labels.untracked}`,
   // Color for ignored git resources. Used file labels and the SCM viewlet.
-  'gitDecoration.ignoredResourceForeground': `${vars.hint.fg}`,
+  'gitDecoration.ignoredResourceForeground': `${vars.git.labels.ignored}`,
   // Color for conflicting git resources. Used file labels and the SCM viewlet.
-  'gitDecoration.conflictingResourceForeground': `${vars.danger.fg}`,
+  'gitDecoration.conflictingResourceForeground': `${vars.git.labels.conflict}`,
+}
+
+export const tokenRootRules = {
+  strings: `${vars.bp.green4}`,
+  types: `${vars.bp.violet2}`,
 }
 
 /**
@@ -962,17 +967,25 @@ export const colors = {
  */
 export const textMateRules = [
   {
+    name: 'Dim known words',
+    scope: ['keyword', 'storage'],
+    settings: {
+      foreground: `${vars.code.known.fg}`,
+      fontStyle: '',
+    },
+  },
+  {
     name: 'Comments',
     scope: ['comment', 'punctuation.definition.comment'],
     settings: {
-      foreground: `${vars.symbols.comment.fg}`,
+      foreground: `${vars.code.comment.fg}`,
     },
   },
   {
     name: 'Strings',
     scope: ['string', 'string.regexp', 'constant.other.symbol'],
     settings: {
-      foreground: `${vars.symbols.string.fg}`,
+      foreground: `${vars.code.string.fg}`,
     },
   },
   {
@@ -986,28 +999,28 @@ export const textMateRules = [
     name: 'Numbers, Characters',
     scope: ['constant.numeric', 'constant.character', 'constant.keyword', 'constant'],
     settings: {
-      foreground: `${vars.symbols.number.fg}`,
+      foreground: `${vars.code.number.fg}`,
     },
   },
   {
     name: 'Global definitions',
     scope: 'entity.name',
     settings: {
-      foreground: `${vars.symbols.default.fg}`,
+      foreground: `${vars.code.default.fg}`,
     },
   },
   {
     name: 'Punctuation',
     scope: 'punctuation',
     settings: {
-      foreground: `${light(vars.symbols.default.fg, 10)}`,
+      foreground: `${vars.code.known.fg}`,
     },
   },
   {
     name: 'Invalid',
     scope: 'invalid',
     settings: {
-      foreground: `${vars.symbols.invalid.fg}`,
+      foreground: `${vars.code.invalid.fg}`,
     },
   },
 ]
@@ -1016,18 +1029,4 @@ export const textMateRules = [
  * Configuration for Semantic syntax highlighting
  * @see https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide#standard-token-types-and-modifiers
  */
-const semantic = {
-  tokenColors: [
-    {
-      scope: 'comment',
-      settings: {
-        foreground: '#dd0000',
-        fontStyle: 'italic',
-      },
-    },
-  ],
-  semanticHighlighting: true,
-  semanticTokenColors: {
-    'variable.readonly:java': '#ff0011',
-  },
-}
+const semantic = {}
