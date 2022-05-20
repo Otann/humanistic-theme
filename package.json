@@ -1,7 +1,19 @@
 {
   "name": "humanistic-theme",
   "displayName": "humanistic-theme",
-  "description": "Inspired by the light Intellij theme, focused on good contrast and non-invasive ui",
+  "description": "Non-invasive theme, inspired by intellij products, base on BlueprintJS colors",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Otann/humanistic-theme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tonsky/vscode-theme-alabaster/issues"
+  },
+  "license": "MIT",
+  "maintainers": [
+    "Anton Chebotaev <anton@chebotaev.net>"
+  ],
+  "publisher": "chebotaev",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.67.0"
@@ -14,7 +26,7 @@
       {
         "label": "Humanistic Theme",
         "uiTheme": "vs",
-        "path": "./themes/Humanistic Theme-color-theme.json"
+        "path": "./themes/humanistic-color-theme.json"
       }
     ]
   },

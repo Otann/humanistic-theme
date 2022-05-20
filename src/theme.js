@@ -964,7 +964,6 @@ export const tokenRootRules = {
 
 /**
  * Backgrounds are not supported unfortunately
- * @see https://github.com/tonsky/vscode-theme-alabaster
  */
 export const textMateRules = [
   {

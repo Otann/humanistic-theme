@@ -1,14 +1,14 @@
 import fs from 'fs'
-import { colors } from './theme.js'
+import { colors, textMateRules } from './theme.js'
 
 const settings = {
+  $schema: 'vscode://schemas/color-theme',
   name: 'Humanistic Theme',
-  colors: {
-    ...colors,
-  },
+  colors,
+  tokenColors: [...textMateRules],
 }
 
-const filename = './themes/Humanistic Theme-color-theme.json'
+const filename = './themes/humanistic-color-theme.json'
 
 fs.writeFileSync(filename, JSON.stringify(settings, null, 2))
 
