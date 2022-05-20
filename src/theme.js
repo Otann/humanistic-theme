@@ -1,5 +1,5 @@
-import { vars, aliases } from './colors.js'
-import { alpha, light } from './utils.js'
+import { vars } from './colors.js'
+import { alpha } from './utils.js'
 
 /**
  * The contrast colors are typically only set for high contrast themes.
@@ -25,7 +25,7 @@ const base_colors = {
   // Overall foreground for disabled elements. This color is only used if not overridden by a component.
   disabledForeground: `${vars.ui.disabled.fg}`,
   // Shadow color of widgets such as Find/Replace inside the editor.
-  'widget.shadow': `${vars.ui.border}`,
+  'widget.shadow': `${vars.ui.shadow}`,
   // Background color of text selections in the workbench (for input fields or text areas, does not apply to selections within the editor and the terminal).
   'selection.background': `${vars.editor.selection.bg}`,
   // Foreground color for description text providing additional information, for example for a label.
@@ -149,7 +149,7 @@ const input_control = {
  */
 const scrollbar_control = {
   // Scroll Bar shadow to indicate that the view is scrolled.
-  'scrollbar.shadow': `${vars.ui.border}`,
+  'scrollbar.shadow': `${vars.ui.shadow}`,
   // Slider background color when active.
   'scrollbarSlider.activeBackground': `${alpha(vars.accent)}`,
   // Slider background color.
@@ -186,31 +186,31 @@ const lists_and_trees = {
    * Active selection is when clicked with mouse
    */
   // List background color for the selected item when the list is active.
-  'list.activeSelectionBackground': `${aliases.list.selected.bg}`,
+  'list.activeSelectionBackground': `${vars.list.selected.bg}`,
   // List foreground color for the selected item when the list is active.
   // NOTE: this also controls color inside `quickInput` focused item
-  'list.activeSelectionForeground': `${aliases.list.selected.fg}`,
+  'list.activeSelectionForeground': `${vars.list.selected.fg}`,
 
   // List background color for the selected item when the list/tree is inactive.
-  'list.inactiveSelectionBackground': `${aliases.list.selected.bg}`,
+  'list.inactiveSelectionBackground': `${vars.list.selected.bg}`,
   // List foreground color for the selected item when the list/tree is inactive. An active list/tree has keyboard focus, an inactive does not.
-  'list.inactiveSelectionForeground': `${aliases.list.selected.fg}`,
+  'list.inactiveSelectionForeground': `${vars.list.selected.fg}`,
 
   /**
    * Focused is when moved with keyboard after selected with mouse
    */
   // List foreground color for the focused item when the list is active.
   // An active list has keyboard focus, an inactive does not.
-  'list.focusForeground': `${aliases.list.focus.fg}`,
+  'list.focusForeground': `${vars.list.focus.fg}`,
   // List background color for the focused item when the list is active.
-  'list.focusBackground': `${aliases.list.focus.bg}`,
+  'list.focusBackground': `${vars.list.focus.bg}`,
   // List background color for the focused item when the list is inactive. An active list has keyboard focus, an inactive does not. Currently only supported in lists.
-  'list.inactiveFocusBackground': `${aliases.list.focus.bg}`,
+  'list.inactiveFocusBackground': `${vars.list.focus.bg}`,
 
   // List background when hovering over items using the mouse.
-  'list.hoverBackground': `${aliases.list.hover.bg}`,
+  'list.hoverBackground': `${vars.list.hover.bg}`,
   // List foreground when hovering over items using the mouse.
-  'list.hoverForeground': `${aliases.list.hover.fg}`,
+  'list.hoverForeground': `${vars.list.hover.fg}`,
 
   // List foreground color for invalid items, for example an unresolved root in explorer.
   'list.invalidItemForeground': `${vars.intent.danger.fg}`,
@@ -230,15 +230,16 @@ const quick_picker_colors = {
   'pickerGroup.border': `${vars.ui.border}`,
   // Quick picker (Quick Open) color for grouping labels.
   'pickerGroup.foreground': `${vars.ui.fg}`,
+
   // Quick input background color.
   // The quick input widget is the container for views like the color theme picker.
   'quickInput.background': `${vars.ui.bg}`,
   // Quick input foreground color. The quick input widget is the container for views like the color theme picker.
   'quickInput.foreground': `${vars.editor.fg}`,
   // Quick picker background color for the focused item.
-  'quickInputList.focusBackground': `${vars.ui.hover.bg}`,
+  'quickInputList.focusBackground': `${vars.list.focus.bg}`,
   // Quick picker foreground color for the focused item.
-  'quickInputList.focusForeground': `${vars.editor.fg}`,
+  'quickInputList.focusForeground': `${vars.list.focus.fg}`,
   // Quick picker icon foreground color for the focused item.
   'quickInputList.focusIconForeground': `${vars.ui.icon.fg}`,
   // Quick picker title background color.
@@ -296,7 +297,7 @@ const side_bar = {
   // Drag and drop feedback color for the side bar sections.
   // The color should have transparency so that the side bar sections can still shine through.
   // The side bar is the container for views like explorer and search.
-  'sideBar.dropBackground': `${vars.ui.shadow.bg}`,
+  'sideBar.dropBackground': `${vars.ui.drop.bg}`,
   // Side Bar title foreground color.
   'sideBarTitle.foreground': `${vars.editor.fg}`,
   // Side Bar section header background color.
@@ -322,7 +323,7 @@ const editor_groups_and_tabs = {
   // Color to separate multiple editor groups from each other.
   'editorGroup.border': `${vars.ui.border}`,
   // Background color when dragging editors around.
-  'editorGroup.dropBackground': `${vars.ui.shadow.bg}`,
+  'editorGroup.dropBackground': `${vars.ui.drop.bg}`,
 
   // Background color of the editor group title header when Tabs are disabled (set "workbench.editor.showTabs": false).
   'editorGroupHeader.noTabsBackground': `${vars.ui.bg}`,
@@ -332,9 +333,9 @@ const editor_groups_and_tabs = {
   'editorGroupHeader.tabsBorder': `${vars.ui.border}`,
 
   // Active Tab background color.
-  'tab.activeBackground': `${vars.editor.bg}`,
+  'tab.activeBackground': `${vars.ui.active.bg}`,
   // Active Tab foreground color in an active group.
-  'tab.activeForeground': `${vars.editor.fg}`,
+  'tab.activeForeground': `${vars.ui.active.fg}`,
   // Bottom border for the active tab.
   'tab.activeBorder': `${vars.accent}`,
 
@@ -372,7 +373,7 @@ const breadcrumbs = {
   // Color of focused breadcrumb items.
   'breadcrumb.focusForeground': `${vars.editor.fg}`,
   // Color of selected breadcrumb items.
-  'breadcrumb.activeSelectionForeground': `${vars.ui.active.bg}`,
+  'breadcrumb.activeSelectionForeground': `${vars.ui.selected.fg}`,
   // Background color of breadcrumb item picker.
   'breadcrumbPicker.background': `${vars.ui.bg}`,
 }
@@ -706,7 +707,7 @@ const panel_colors = {
   // Panel border color to separate the panel from the editor.
   'panel.border': `${vars.ui.border}`,
   // Drag and drop feedback color for the panel title items. The color should have transparency so that the panel entries can still shine through.
-  'panel.dropBackground': `${vars.ui.shadow.bg}`,
+  'panel.dropBackground': `${vars.ui.drop.bg}`,
   // Border color for the active panel title.
   // "panelTitle.activeBorder": `${vars.unset}`,
   // Title color for the active panel.
@@ -936,7 +937,7 @@ export const colors = {
   // Hover background color for the tiles on the Get Started.
   'welcomePage.tileHoverBackground': `${vars.ui.bg}`,
   // Shadow color for the Welcome page walkthrough category buttons.
-  'welcomePage.tileShadow': `${vars.ui.shadow.bg}`,
+  'welcomePage.tileShadow': `${vars.ui.shadow}`,
   // Background color for the embedded editors on the Interactive Playground.
   'walkThrough.embeddedEditorBackground': `${vars.editor.bg}`,
 
