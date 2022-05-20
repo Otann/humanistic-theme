@@ -36,7 +36,7 @@ const editor = {
 
   guides: {
     active: { fg: bp.gray5 },
-    inactive: { fg: bp.light_gray2 },
+    inactive: { fg: bp.light_gray4 },
   },
 
   gutter: {
@@ -63,7 +63,7 @@ const editor = {
  */
 const ui = {
   fg: bp.dark_gray2,
-  bg: bp.light_gray5,
+  bg: bp.light_gray4,
   border: bp.alias.border,
 
   disabled: bp.alias.control.disabled,

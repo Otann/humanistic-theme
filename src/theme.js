@@ -546,7 +546,6 @@ const editor_colors = {
 
   // Background color for folded ranges.
   // The color must not be opaque so as not to hide underlying decorations.
-  // NOTE: this overlaps with the gutter border
   'editor.foldBackground': `${vars.editor.folded.bg}`,
 
   // /**
