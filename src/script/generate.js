@@ -1,5 +1,6 @@
 import fs from 'fs'
-import { colors, textMateRules } from './theme.js'
+import { colors } from '../theme/workbench.js'
+import { textMateRules } from '../theme/syntax.js'
 
 const settings = {
   $schema: 'vscode://schemas/color-theme',

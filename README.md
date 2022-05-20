@@ -29,7 +29,3 @@ Add the following to your `settings.json`
   }
 }
 ```
-
-## TODO:
-
-- [ ] Publish the theme

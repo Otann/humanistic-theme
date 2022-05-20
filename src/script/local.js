@@ -1,12 +1,12 @@
 import fs from 'fs'
-import { colors, textMateRules, tokenRootRules } from './theme.js'
+import { colors } from '../theme/workbench.js'
+import { textMateRules } from '../theme/syntax.js'
 
 const settings = {
   'workbench.colorCustomizations': {
     ...colors,
   },
   'editor.tokenColorCustomizations': {
-    ...tokenRootRules,
     textMateRules,
   },
 }

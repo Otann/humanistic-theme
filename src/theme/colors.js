@@ -1,5 +1,5 @@
-import { alpha, light } from './utils.js'
-import { bp } from './blueprint.js'
+import { alpha } from '../utils.js'
+import { bp } from '../blueprint.js'
 
 /**
  * Basic primitives to expose
@@ -141,33 +141,17 @@ const git = {
 
 /**
  * Code style is also base on blueprint
- * Mostly work in progress
+ * Backgrounds are not supported by the TextMate rules
  */
 const code = {
-  default: {
-    fg: bp.black,
-  },
-  known: {
-    fg: bp.gray2,
-  },
-  comment: {
-    fg: bp.gray4,
-  },
-  string: {
-    fg: bp.green3,
-  },
-  number: {
-    fg: bp.violet2,
-  },
-  keyword: {
-    fg: bp.blue2,
-  },
-  function: {
-    fg: bp.indigo2,
-  },
-  invalid: {
-    fg: bp.intent.danger.fg,
-  },
+  default: bp.black,
+  reserved: bp.gray2,
+  comment: bp.gray4,
+  string: bp.green3,
+  number: bp.violet2,
+  keyword: bp.blue2,
+  function: bp.indigo2,
+  invalid: bp.intent.danger.fg,
 }
 
 export const vars = {
