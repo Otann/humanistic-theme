@@ -1,4 +1,4 @@
-import { alpha, desaturate, light } from './utils.js'
+import { alpha } from './utils.js'
 
 /**
  * Constants for Blueprint core colors
@@ -73,66 +73,6 @@ export const core = {
   ...success,
   ...warning,
   ...danger,
-}
-
-/**
- * Those are collected from callout colors
- * fg - icon color
- * bg - background color of the callout
- */
-const intent = {
-  neutral: {
-    fg: core.gray1,
-    bg: alpha(core.gray3, 0.15),
-  },
-  primary: {
-    fg: core.blue2,
-    bg: alpha(core.blue3, 0.1),
-  },
-  success: {
-    fg: core.green2,
-    bg: alpha(core.green3, 0.1),
-  },
-  warning: {
-    fg: core.orange2,
-    bg: alpha(core.orange3, 0.1),
-  },
-  danger: {
-    fg: core.red2,
-    bg: alpha(core.red3, 0.1),
-  },
-}
-
-export const alias = {
-  // rgba(125,188,255,.6)
-  selection: alpha('#7dbcff', 0.6),
-
-  // rgba(17, 20, 24, 0.15)
-  border: alpha('#111418', 0.15),
-
-  muted: core.gray1,
-
-  control: {
-    icon: { fg: core.gray1 },
-    label: { fg: core.dark_gray1 },
-    primary: { fg: core.blue3 },
-    normal: { fg: alpha(core.gray3, 0.3) },
-    // taken from button
-    disabled: {
-      fg: alpha(core.gray1, 0.6),
-      bg: alpha(core.light_gray1, 0.5),
-    },
-  },
-
-  menu: {
-    hover: {
-      bg: alpha(core.gray3, 0.15),
-    },
-    active: {
-      fg: core.blue2,
-      bg: alpha(core.blue3, 0.1),
-    },
-  },
 }
 
 const vermillion = {
@@ -226,6 +166,69 @@ export const extended = {
   ...lime,
   ...gold,
   ...sepia,
+}
+
+/**
+ * Aliases for where blueprint colors are used in the UI
+ */
+export const alias = {
+  // rgba(125,188,255,.6)
+  selection: alpha('#7dbcff', 0.6),
+
+  // rgba(17, 20, 24, 0.15)
+  border: alpha('#111418', 0.15),
+
+  muted: core.gray1,
+
+  control: {
+    icon: { fg: core.gray1 },
+    label: { fg: core.dark_gray1 },
+    primary: { fg: core.blue3 },
+    normal: { fg: alpha(core.gray3, 0.3) },
+    // taken from button
+    disabled: {
+      fg: alpha(core.gray1, 0.6),
+      bg: alpha(core.light_gray1, 0.5),
+    },
+  },
+
+  menu: {
+    hover: {
+      bg: alpha(core.gray3, 0.15),
+    },
+    active: {
+      fg: core.blue2,
+      bg: alpha(core.blue3, 0.1),
+    },
+  },
+}
+
+/**
+ * Those are collected from callout colors
+ * fg - icon color
+ * bg - background color of the callout
+ */
+const intent = {
+  neutral: {
+    fg: core.gray1,
+    bg: alpha(core.gray3, 0.15),
+  },
+  primary: {
+    fg: core.blue2,
+    bg: alpha(core.blue3, 0.1),
+  },
+  success: {
+    fg: core.green2,
+    bg: alpha(core.green3, 0.1),
+  },
+  warning: {
+    fg: core.orange2,
+    bg: alpha(core.orange3, 0.1),
+  },
+  danger: {
+    fg: core.red2,
+    bg: alpha(core.red3, 0.1),
+  },
 }
 
 export const bp = {

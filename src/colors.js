@@ -25,6 +25,7 @@ const editor = {
   current_line: {
     bg: alpha(bp.orange5, 0.1),
   },
+
   whitespace: {
     fg: bp.light_gray3,
   },
@@ -42,6 +43,11 @@ const editor = {
     line_number: { fg: bp.gray3 },
   },
 
+  folded: {
+    bg: alpha(bp.light_gray1, 0.2),
+  },
+
+  // used in both editor and ruler (right side scrollbar)
   highlights: {
     text: { bg: alpha(bp.gray4, 0.2) },
     symbol_read: { bg: alpha(bp.green5, 0.2) }, // like map key string (???)
@@ -56,32 +62,31 @@ const editor = {
  * Supportive interface, mostly non-editable
  */
 const ui = {
-  fg: bp.black,
+  fg: bp.dark_gray2,
   bg: bp.light_gray5,
   border: bp.alias.border,
 
   disabled: bp.alias.control.disabled,
+  hover: { bg: bp.light_gray2 },
+  icon: { fg: bp.alias.control.icon.fg },
 
-  hover: {
-    bg: bp.light_gray2,
-  },
+  // shadow for menu elements
+  shadow: bp.gray4,
+
   // active tab, toolbar tab, status bar item
   active: {
     bg: bp.white,
     fg: bp.black,
   },
-  // selected element
-  selected: bp.alias.menu.active,
-  icon: {
-    fg: bp.alias.control.icon.fg,
-  },
+
+  // like text inputs
   control: {
+    bg: editor.bg,
+    fg: editor.fg,
     border: bp.alias.border,
   },
-  shadow: bp.gray4,
-  drop: {
-    bg: bp.gray4,
-  },
+  // (?) drag-n-drop feedback
+  drop: { bg: bp.gray4 },
 }
 
 /**
@@ -128,7 +133,7 @@ const git = {
   },
   gutter: {
     modified: alpha(bp.blue4),
-    added: alpha(bp.green4),
+    added: alpha(bp.green4, 0.4),
     deleted: alpha(bp.red4),
     comment: alpha(bp.light_gray1),
   },

@@ -105,13 +105,13 @@ const button_control = {
  */
 const dropdown_control = {
   // Dropdown background.
-  'dropdown.background': `${vars.editor.bg}`,
+  'dropdown.background': `${vars.ui.control.bg}`,
   // Dropdown list background
-  'dropdown.listBackground': `${vars.editor.bg}`,
+  'dropdown.listBackground': `${vars.list.bg}`,
   // Dropdown border
   'dropdown.border': `${vars.ui.control.border}`,
   // Dropdown foreground
-  'dropdown.foreground': `${vars.editor.fg}`,
+  'dropdown.foreground': `${vars.ui.control.fg}`,
 }
 
 /**
@@ -120,11 +120,11 @@ const dropdown_control = {
  */
 const input_control = {
   // Input box background.
-  'input.background': `${vars.editor.bg}`,
+  'input.background': `${vars.ui.control.bg}`,
   // Input box border.
   'input.border': `${vars.ui.control.border}`,
   // Input box foreground.
-  'input.foreground': `${vars.editor.fg}`,
+  'input.foreground': `${vars.ui.control.fg}`,
   // Input box foreground color for placeholder text.
   'input.placeholderForeground': `${vars.ui.disabled.fg}`,
   // Border color of activated options in input fields.
@@ -151,7 +151,7 @@ const scrollbar_control = {
   // Scroll Bar shadow to indicate that the view is scrolled.
   'scrollbar.shadow': `${vars.ui.shadow}`,
   // Slider background color when active.
-  'scrollbarSlider.activeBackground': `${alpha(vars.accent)}`,
+  'scrollbarSlider.activeBackground': `${alpha(vars.accent, 0.2)}`,
   // Slider background color.
   'scrollbarSlider.background': `${alpha(vars.ui.hover.bg)}`,
   // Slider background color when hovering.
@@ -166,7 +166,7 @@ const badge = {
   // Badge foreground color.
   'badge.foreground': `${vars.editor.bg}`,
   // Badge background color.
-  'badge.background': `${vars.accent}`,
+  'badge.background': `${vars.bp.blue3}`,
 }
 
 /**
@@ -367,13 +367,13 @@ const editor_groups_and_tabs = {
  */
 const breadcrumbs = {
   // Color of breadcrumb items.
-  'breadcrumb.foreground': `${vars.ui.icon.fg}`,
+  'breadcrumb.foreground': `${vars.ui.fg}`,
   // Background color of breadcrumb items.
   'breadcrumb.background': `${vars.ui.bg}`,
   // Color of focused breadcrumb items.
-  'breadcrumb.focusForeground': `${vars.editor.fg}`,
+  'breadcrumb.focusForeground': `${vars.list.focus.fg}`,
   // Color of selected breadcrumb items.
-  'breadcrumb.activeSelectionForeground': `${vars.ui.selected.fg}`,
+  'breadcrumb.activeSelectionForeground': `${vars.ui.active.fg}`,
   // Background color of breadcrumb item picker.
   'breadcrumbPicker.background': `${vars.ui.bg}`,
 }
@@ -532,9 +532,9 @@ const editor_colors = {
    * Lightbulb
    */
   // The color used for the lightbulb actions icon.
-  'editorLightBulb.foreground': `${vars.bp.intent.neutral.fg}`,
+  'editorLightBulb.foreground': `${vars.bp.blue3}`,
   // The color used for the lightbulb auto fix actions icon.
-  'editorLightBulbAutoFix.foreground': `${vars.bp.intent.primary.fg}`,
+  'editorLightBulbAutoFix.foreground': `${vars.bp.green3}`,
 
   // Background color behind matching brackets.
   'editorBracketMatch.background': `${vars.editor.guides.active.fg}`,
@@ -547,7 +547,7 @@ const editor_colors = {
   // Background color for folded ranges.
   // The color must not be opaque so as not to hide underlying decorations.
   // NOTE: this overlaps with the gutter border
-  'editor.foldBackground': `${alpha(vars.editor.guides.inactive, 0.05)}`,
+  'editor.foldBackground': `${vars.editor.folded.bg}`,
 
   // /**
   //  * This ruler is located beneath the scroll bar on the right edge of the editor and gives an overview of the decorations in the editor.
@@ -761,7 +761,7 @@ const title_bar_colors = {
   // Title Bar background when the window is inactive.
   'titleBar.inactiveBackground': `${vars.ui.bg}`,
   // Title Bar foreground when the window is inactive.
-  'titleBar.inactiveForeground': `${vars.ui.icon.fg}`,
+  'titleBar.inactiveForeground': `${vars.ui.disabled.fg}`,
   // Title bar border color.
   'titleBar.border': `${vars.ui.border}`,
 }
@@ -909,12 +909,12 @@ export const colors = {
   'terminal.ansiBrightRed': '#F05050',
   'terminal.ansiBrightYellow': '#FFBC5D',
   // The selection background color of the terminal.
-  'terminal.selectionBackground': `${alpha(vars.editor.selection.bg)}`,
+  'terminal.selectionBackground': `${vars.editor.selection.bg}`,
   // The background color of the terminal cursor.
   // Allows customizing the color of a character overlapped by a block cursor.
   'terminalCursor.background': `${vars.editor.bg}`,
   // The foreground color of the terminal cursor.
-  'terminalCursor.foreground': `${alpha(vars.accent, 0.8)}`,
+  'terminalCursor.foreground': `${alpha(vars.accent, 0.7)}`,
 
   //
   // Debug

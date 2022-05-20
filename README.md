@@ -1,7 +1,10 @@
 # README
 
-I am migrating from intellij-based products to VS Code,
-so I am trying to make it much more easy on the eyes and visually organised.
+Coming to VS Code from light-themed IntelliJ products, I am missing the
+cleanness and calm serenity of the UI.
+
+So I am taking the feel of the WebStorm and with help of BlueprintJS colors
+making a pleasant experience out of the editor's workbench.
 
 ## Thoughts and goals
 
@@ -20,8 +23,8 @@ Add the following to your `settings.json`
 ```json
 {
   "customizeUI.stylesheet": {
-    "div.composite.title": "background-color: #F2F2F2; border-bottom: 1px solid #D4D4D4;",
-    "div.quick-input-widget": "border: 1px solid #D4D4D4;",
+    "div.composite.title": "background-color: #F6F7F9; border-bottom: 1px solid rgba(17, 20, 24, 0.15);",
+    "div.quick-input-widget": "border: 1px solid rgba(17, 20, 24, 0.15);",
     ".monaco-editor .margin-view-overlays > div:hover > .comment-range-glyph.comment-diff-added:before, .monaco-editor .margin-view-overlays .comment-range-glyph.comment-diff-added.line-hover:before, .monaco-editor .margin-view-overlays .comment-range-glyph.comment-diff-added.multiline-add:before, .monaco-editor .comment-range-glyph.comment-thread:before": "color: #999999"
   }
 }

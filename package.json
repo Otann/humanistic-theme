@@ -19,8 +19,6 @@
     ]
   },
   "devDependencies": {
-    "mustache": "^4.2.0",
-    "tinycolor": "^0.0.1",
     "tinycolor2": "^1.4.2",
     "watch": "^1.0.2"
   },
