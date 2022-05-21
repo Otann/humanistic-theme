@@ -1,6 +1,96 @@
 import { vars } from './colors.js'
 import { alpha } from '../utils.js'
 
+/**
+ * Coming from TextMate naming conventions
+ * @see https://macromates.com/manual/en/language_grammars#naming-conventions
+ */
+const roots = {
+  comment: {
+    line: {},
+    block: {},
+  },
+  constant: {
+    numeric: {},
+    character: {
+      escape: {},
+    },
+    language: {},
+    other: {},
+  },
+  entity: {
+    name: {
+      function: {},
+      type: {},
+      tag: {},
+      section: {},
+    },
+    other: {
+      'inherited-class': {},
+      'attribute-name': {},
+    },
+  },
+  invalid: {
+    illegal: {},
+    deprecated: {},
+  },
+  // keywords (when these do not fall into the other groups).
+  keyword: {
+    // mainly related to flow control like continue, while, return, etc.
+    control: {},
+    // operators can either be textual (e.g. or) or be characters.
+    operator: {},
+    other: {},
+  },
+  markup: {
+    underline: {
+      // this is for links, as a convenience this is derived from markup.underline so that if there is no theme rule which specifically targets markup.underline.link then it will inherit the underline style.
+      link: {},
+    },
+    bold: {},
+    heading: {},
+    italic: {},
+    list: {
+      numbered: {},
+      unnumbered: {},
+    },
+    quote: {},
+    raw: {},
+    other: {},
+  },
+  // the meta scope is generally used to markup larger parts of the document.
+  // For example the entire line which declares a function would be meta.function and
+  // the subsets would be storage.type, entity.name.function, variable.parameter etc.
+  // and only the latter would be styled.
+  meta: {},
+  storage: {
+    // the type of something, class, function, int, var, etc.
+    type: {},
+    // a storage modifier like static, final, abstract, etc.
+    modifier: {},
+  },
+  string: {},
+  // things provided by a framework or library should be below support.
+  support: {
+    // functions provided by the framework/library. For example NSLog in Objective-C is support.function.
+    function: {},
+    class: {},
+    type: {},
+    constant: {},
+    variable: {},
+    other: {},
+  },
+  // variables. Not all languages allow easy identification (and thus markup) of these.
+  variable: {
+    // when the variable is declared as the parameter.
+    parameter: {},
+    // reserved language variables like this, super, self, etc.
+    language: {},
+    // other variables, like $some_variables.
+    other: {},
+  },
+}
+
 const known_scopes = [
   'comment',
   'constant.language',
@@ -111,7 +201,57 @@ const known_scopes = [
  * Describes syntax highlighting
  * Backgrounds are not supported unfortunately
  */
-export const textMateRules = []
+export const textMateRules = [
+  {
+    scope: ['comment', 'punctuation.definition.comment'],
+    settings: {
+      foreground: vars.code.comment,
+    },
+  },
+  {
+    name: 'Generic group for constants',
+    scope: ['constant', 'constant.numeric'],
+    settings: {
+      foreground: vars.code.constant,
+    },
+  },
+  {
+    name: 'String are special constants though',
+    scope: 'string',
+    settings: {
+      foreground: vars.code.string,
+    },
+  },
+  {
+    name: 'Dim known ceremonies of the code',
+    scope: ['keyword', 'punctuation', 'storage.type.function', 'meta.brace', 'storage.type'],
+    settings: {
+      foreground: vars.code.reserved,
+    },
+  },
+  {
+    name: 'Highlight important things',
+    scope: ['variable'],
+    settings: {
+      foreground: vars.code.keyword,
+    },
+  },
+  {
+    scope: ['variable.language'],
+    settings: {
+      foreground: vars.bp.gray3,
+      fontStyle: 'italic',
+    },
+  },
+  {
+    name: 'Things that relate to type-system',
+    scope: ['entity.name'],
+    settings: {
+      foreground: vars.code.types,
+      fontStyle: 'bold',
+    },
+  },
+]
 
 // const all_scopes = []
 // rules.map((rule) => {

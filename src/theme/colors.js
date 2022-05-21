@@ -1,4 +1,4 @@
-import { alpha } from '../utils.js'
+import { alpha, dark } from '../utils.js'
 import { bp } from '../blueprint.js'
 
 /**
@@ -145,12 +145,18 @@ const git = {
  */
 const code = {
   default: bp.black,
+
+  /** Dim known ceremonies of the code */
   reserved: bp.gray2,
   comment: bp.gray4,
+
   string: bp.green3,
-  number: bp.violet2,
+  constant: bp.indigo2,
+  types: bp.violet3,
+
   keyword: bp.blue2,
   function: bp.indigo2,
+
   invalid: bp.intent.danger.fg,
 }
 
