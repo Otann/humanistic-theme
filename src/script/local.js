@@ -11,8 +11,9 @@ const settings = {
   },
 }
 
-const filename = './.vscode/settings.json'
+function writeSettings(filename) {
+  fs.writeFileSync(filename, JSON.stringify(settings, null, 2))
+  console.log(`Updated ${filename} at ${new Date()}`)
+}
 
-fs.writeFileSync(filename, JSON.stringify(settings, null, 2))
-
-console.log(`Updated ${filename} at ${new Date()}`)
+writeSettings('./.vscode/settings.json')

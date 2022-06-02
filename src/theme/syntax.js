@@ -198,10 +198,46 @@ const known_scopes = [
 ]
 
 /**
- * Describes syntax highlighting
- * Backgrounds are not supported unfortunately
+ * Describes syntax highlighting.
+ * Backgrounds are not supported unfortunately.
+ *
+ * Works in layers. Starts at the most background and then build up
+ * and highlights things that need focus and attention.
  */
 export const textMateRules = [
+  {
+    name: 'Dim a bit known ceremonies of the code',
+    scope: [
+      'keyword',
+      'punctuation',
+      'storage.type.function',
+      'meta.brace',
+      'storage.type',
+      'keyword.control',
+      'keyword.operator',
+      'keyword.control.import',
+      'keyword.control.at-rule',
+      'keyword.control',
+      'keyword.control.conditional',
+      'keyword.operator.new',
+      'keyword.operator.expression',
+      'keyword.begin.blade',
+      'keyword.end.blade',
+      'keyword.blade',
+      'keyword.type-alias',
+      'keyword.type',
+      'keyword.operator.assignment.cs',
+      'keyword.control.export',
+      'keyword.other.await',
+      'support.class.console',
+      'support.type.object.module',
+      'storage.type.class.jsdoc',
+      'storage.modifier',
+    ],
+    settings: {
+      foreground: vars.code.reserved,
+    },
+  },
   {
     scope: ['comment', 'punctuation.definition.comment'],
     settings: {
@@ -209,45 +245,48 @@ export const textMateRules = [
     },
   },
   {
-    name: 'Generic group for constants',
-    scope: ['constant', 'constant.numeric'],
-    settings: {
-      foreground: vars.code.constant,
-    },
-  },
-  {
-    name: 'String are special constants though',
-    scope: 'string',
+    name: 'String are special and there are many, make them important, but not intrusive',
+    scope: ['string', 'meta.jsx.children'],
     settings: {
       foreground: vars.code.string,
     },
   },
   {
-    name: 'Dim known ceremonies of the code',
-    scope: ['keyword', 'punctuation', 'storage.type.function', 'meta.brace', 'storage.type'],
-    settings: {
-      foreground: vars.code.reserved,
-    },
-  },
-  {
-    name: 'Highlight important things',
+    name: 'Calmly highlight main entities from black',
     scope: ['variable'],
     settings: {
       foreground: vars.code.keyword,
     },
   },
   {
-    scope: ['variable.language'],
+    name: 'Highlight more important ones than others',
+    scope: ['variable.parameter'],
     settings: {
-      foreground: vars.bp.gray3,
+      foreground: vars.code.highlight,
+    },
+  },
+  {
+    name: 'Functions are slightly more noticeable and emphasized than main body of code',
+    scope: ['entity.name.function'],
+    settings: {
+      foreground: vars.code.function,
       fontStyle: 'italic',
     },
   },
   {
-    name: 'Things that relate to type-system',
-    scope: ['entity.name'],
+    name: 'Things that relate to type-system are strong, but not too different color',
+    // interfaces, classes are all inside - entity.name.type
+    scope: ['entity.name.type', 'support.type.primitive'],
     settings: {
-      foreground: vars.code.types,
+      foreground: vars.code.type_system,
+      fontStyle: 'bold',
+    },
+  },
+  {
+    name: 'Generic group for constants, make them strong as classes',
+    scope: ['constant', 'constant.numeric'],
+    settings: {
+      foreground: vars.code.constant,
       fontStyle: 'bold',
     },
   },

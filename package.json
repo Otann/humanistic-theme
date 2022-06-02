@@ -37,7 +37,8 @@
   "scripts": {
     "generate": "node ./src/script/generate.js",
     "local": "node ./src/script/local.js",
-    "watch": "watch 'npm run local' ./src"
+    "watch:local": "watch 'npm run local' ./src",
+    "watch:generate": "watch 'npm run generate' ./src"
   },
   "type": "module"
 }

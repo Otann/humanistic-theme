@@ -58,6 +58,10 @@ const editor = {
   },
 }
 
+export function foo(a, bablarna) {
+  console.log(`Hello dear, and my friend ${bablarna}`)
+}
+
 /**
  * Supportive interface, mostly non-editable
  */
@@ -151,11 +155,11 @@ const code = {
   comment: bp.gray4,
 
   string: bp.green3,
-  constant: bp.indigo2,
-  types: bp.violet3,
-
-  keyword: bp.blue2,
-  function: bp.indigo2,
+  constant: bp.blue5,
+  keyword: bp.black,
+  highlight: bp.orange4,
+  type_system: bp.violet3,
+  function: bp.blue3,
 
   invalid: bp.intent.danger.fg,
 }
