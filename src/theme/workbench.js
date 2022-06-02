@@ -526,7 +526,7 @@ const editor_colors = {
    * Appears as an insert between code lines with extra metadata
    */
   // Foreground color of an editor CodeLens.
-  'editorCodeLens.foreground': vars.code.comment.fg,
+  'editorCodeLens.foreground': vars.code.comment,
 
   /**
    * Lightbulb

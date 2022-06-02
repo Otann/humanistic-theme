@@ -121,6 +121,7 @@
     "editorIndentGuide.activeBackground": "#C5CBD3",
     "editorInlayHint.background": "#FF01FF",
     "editorRuler.foreground": "#EDEFF2",
+    "editorCodeLens.foreground": "#ABB3BF",
     "editorLightBulb.foreground": "#2D72D2",
     "editorLightBulbAutoFix.foreground": "#238551",
     "editorBracketMatch.background": "#C5CBD3",
@@ -273,17 +274,7 @@
       }
     },
     {
-      "name": "Generic group for constants",
-      "scope": [
-        "constant",
-        "constant.numeric"
-      ],
-      "settings": {
-        "foreground": "#634DBF"
-      }
-    },
-    {
-      "name": "String are special constants though",
+      "name": "String are special and there are many, make them important, but not intrusive",
       "scope": [
         "string",
         "meta.jsx.children"
@@ -293,30 +284,52 @@
       }
     },
     {
-      "name": "Highlight important things",
+      "name": "Calmly highlight main entities from black",
       "scope": [
         "variable"
       ],
       "settings": {
-        "foreground": "#215DB0"
+        "foreground": "#111418"
       }
     },
     {
+      "name": "Highlight more important ones than others",
       "scope": [
-        "variable.language"
+        "variable.parameter"
       ],
       "settings": {
-        "foreground": "#8F99A8",
+        "foreground": "#EC9A3C"
+      }
+    },
+    {
+      "name": "Functions are slightly more noticeable and emphasized than main body of code",
+      "scope": [
+        "entity.name.function"
+      ],
+      "settings": {
+        "foreground": "#2D72D2",
         "fontStyle": "italic"
       }
     },
     {
-      "name": "Things that relate to type-system",
+      "name": "Things that relate to type-system are strong, but not too different color",
       "scope": [
-        "meta.definition"
+        "entity.name.type",
+        "support.type.primitive"
       ],
       "settings": {
         "foreground": "#9D3F9D",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Generic group for constants, make them strong as classes",
+      "scope": [
+        "constant",
+        "constant.numeric"
+      ],
+      "settings": {
+        "foreground": "#8ABBFF",
         "fontStyle": "bold"
       }
     }
