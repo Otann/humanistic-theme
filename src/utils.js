@@ -10,6 +10,10 @@ export function light(value, amount) {
   return color(value).lighten(amount).toHex8String()
 }
 
+export function dark(value, amount) {
+  return color(value).darken(amount).toHex8String()
+}
+
 export function bright(value, amount) {
   return color(value).brighten(amount).toHex8String()
 }

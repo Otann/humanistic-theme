@@ -1,4 +1,4 @@
-import { alpha } from '../utils.js'
+import { alpha, dark } from '../utils.js'
 import { bp } from '../blueprint.js'
 
 /**
@@ -56,6 +56,10 @@ const editor = {
     search_current: { bg: alpha(bp.green5, 0.2) }, // highlights current search result
     search_range: { bg: alpha(bp.green5, 0.1) }, // highlights current search result line
   },
+}
+
+export function foo(a, bablarna) {
+  console.log(`Hello dear, and my friend ${bablarna}`)
 }
 
 /**
@@ -145,12 +149,18 @@ const git = {
  */
 const code = {
   default: bp.black,
+
+  /** Dim known ceremonies of the code */
   reserved: bp.gray2,
   comment: bp.gray4,
+
   string: bp.green3,
-  number: bp.violet2,
-  keyword: bp.blue2,
-  function: bp.indigo2,
+  constant: bp.blue5,
+  keyword: bp.black,
+  highlight: bp.orange4,
+  type_system: bp.violet3,
+  function: bp.blue3,
+
   invalid: bp.intent.danger.fg,
 }
 
